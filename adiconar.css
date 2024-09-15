@@ -1,0 +1,16 @@
+.form__container{
+    align-items: baseline;
+    text-align: baseline;
+    margin: 10px;
+}
+
+.form__container-div{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin-right: 2em;
+}
+
+.form__info {
+    padding-right: 2em;
+}

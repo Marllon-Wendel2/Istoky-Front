@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --cor-primaria: #A8DADC;
+    --cor-secundaria: #457B9D;
+    --neutro: #F1FAEE; 
+    --preto: #1D3557; 
+    --fonte-titulo: "Krona One", sans-serif;
+    --fonte-texto: 'Numans', sans-serif;
+    --degrade-azul: linear-gradient(180deg, #A8DADC 0%, #457B9D 100%);
+}
+
+
+body {
+    font-family: var(--fonte-texto);
+    background-color: var(--neutro);
+    color: var(--preto);
+    margin: 0;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-secundaria);
+}
+
+th {
+    background-color: var(--cor-primaria);
+    font-family: var(--fonte-titulo);
+}
+
+tr:nth-child(even) {
+    background-color: var(--cor-primaria);
+}
+
+tr:hover {
+    background-color: var(--cor-secundaria);
+    color: var(--neutro);
+}
+
+.container__logo {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.container__logo-img {
+    width: 100px;
+    border-radius: 200px;
+}
