@@ -61,6 +61,10 @@ tr:hover {
     border-radius: 200px;
 }
 
+.icones-header {
+  width: 20px;
+}
+
 .button {
     line-height: 1;
     text-decoration: none;
@@ -80,6 +84,7 @@ tr:hover {
     text-overflow: ellipsis;
     transition: background-color 0.3s;
     margin-bottom: 2px;
+    margin-right: 4px;
   }
   
   .button__icon-wrapper {
@@ -118,3 +123,56 @@ tr:hover {
     transition: transform 0.3s ease-in-out 0.1s;
     transform: translate(0);
   }
+
+  .imagem-icone {
+    width: 18px;
+  }
+
+.btn-header {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 60px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-header59:focus {
+  color: #171e29;
+}
+
+.btn-header59:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.btn-header59:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+@media (min-width: 768px) {
+  .btn-header59 {
+    min-width: 170px;
+  }
+}
