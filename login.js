@@ -10,7 +10,7 @@ loginForm.addEventListener("submit", async(event) => {
    const data = await autenticaUsuario(email,password)
 
    if(data.success === false) {
-    Swal.fire({
+    await Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Email ou senha incorretos",
@@ -18,7 +18,7 @@ loginForm.addEventListener("submit", async(event) => {
       
    }
    if(data.success === true) {
-    Swal.fire({
+    await Swal.fire({
         icon: "success",
         title: "Logando",
         text: "Tudo certo",
