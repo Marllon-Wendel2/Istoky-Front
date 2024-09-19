@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("authToken")
+    if(!token) {
+        window.location.href = "login.html"
+    }
+})
+
 const btnAdicionar = document.getElementById("form-container");
 
 btnAdicionar.addEventListener("submit",async (event) => {
@@ -51,7 +58,6 @@ async function adicionarProduto(dto) {
 
         const data = await response.json();
         const { result } = data;
-
         return result;
     } catch (error) {
         console.error('Erro:', error);

@@ -1,0 +1,68 @@
+:root {
+        --cor-primaria: #A8DADC;
+        --cor-secundaria: #457B9D;
+        --neutro: #F1FAEE; 
+        --preto: #1D3557; 
+        --fonte-titulo: "Krona One", sans-serif;
+        --fonte-texto: 'Numans', sans-serif;
+        --degrade-azul: linear-gradient(180deg, #A8DADC 0%, #457B9D 100%);
+}
+
+.main {
+    width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: var(--degrade-azul);
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
+    gap: 10px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+input{
+	width: 100%;
+	height: 50px;
+	background: var(--neutro);
+	justify-content: center;
+	display: flex;
+	margin: 10px;
+	padding: 5px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+
+button{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: var(--cor-primaria);
+	background: var(--preto);
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+button:hover{
+	background: var(--cor-secundaria);
+}

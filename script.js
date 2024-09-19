@@ -1,69 +1,72 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("authToken")
+    if(!token) {
+        window.location.href = "login.html"
+    }
+})
+
 let listaProdutos = []
 document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:8000/istoky')
         .then(response => response.json())
-        .then(data => {
+        .then(async (data) => {
             listaProdutos = data.message
-            adicionarProdutos()
+            adicionarProdutos(listaProdutos)
         })
         .catch(error => console.error('Erro:', error));
     });
 
-    const lista = document.getElementById("lista")
-const listaProdutosQtd = document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:8000/produtos/lista')
+    
+    const listaProdutosQtd = document.addEventListener('DOMContentLoaded', () => {
+        fetch('http://localhost:8000/produtos/lista')
         .then(response => response.json())
         .then(data => {
             console.log(data)
         })
         .catch(error => console.error('Erro:', error));
     });
-
-// function adicionarProdutos(){
-//     const table =  document.getElementById("lista-produtos").getElementsByTagName('tbody')[0]
-//     console.log(listaProdutos)
-
     
-//     listaProdutos.forEach(produto => {
-//         const buttonDeletar =  document.createElement("button");
-//         buttonDeletar.classList.add("button")
-//         buttonDeletar.textContent = "Deletar";
+const lista = document.getElementById("lista");
+const btnFIltro = document.getElementById("btn-filtro");
+const btnPesquisa = document.getElementById("btn-pesquisa");
+const btnLogout = document.getElementById("btn-logout");
 
-//         const buttonEditar =  document.createElement("button");
-//         buttonEditar.classList.add("button");
-//         buttonEditar.textContent = "Editar"
+btnFIltro.addEventListener("click", async(lista) => {
+    lista = listaProdutos
+    const produtosOrdenados = await filtroDataValidade(lista)
+    adicionarProdutos(produtosOrdenados)
+});
 
+btnPesquisa.addEventListener("click", async () => {
 
-        
+    const{ value: nome } = await Swal.fire({
+        title:"Qual produto esta procurando?",
+        input: "text",
+        inputLabel: "Nome do produto: ",
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if(!value) {
+                
+            }
+        }
+    });
+    if(nome) {
+        const resultadoPesquisa =  await filtraNome(listaProdutos, nome);
+        listaProdutos = resultadoPesquisa;
+        adicionarProdutos(resultadoPesquisa);
+    }
+})
 
-//         const newLine = table.insertRow();
+btnLogout.addEventListener("click", () => {
+    localStorage.removeItem('authToken');
+    location.reload()
+    console.log("Token removido do LocalStorage");
 
-//         const celulaProduto = newLine.insertCell(0)
-//         const celulaDescricao = newLine.insertCell(1)
-//         const celulaDataDeValidade = newLine.insertCell(2)
-//         const celulaLocalizacao = newLine.insertCell(3)
-//         const celulaPreçoDeCompra = newLine.insertCell(4)
-//         const celulaPreçoDeVenda = newLine.insertCell(5)
-//         const celulaDataEntrada = newLine.insertCell(6)
-//         const celulaDataSaida = newLine.insertCell(7)
-//         const celulaAcoes = newLine.insertCell(8)
+})
 
-//         celulaAcoes.appendChild(buttonDeletar);
-//         celulaAcoes.appendChild(buttonEditar);
-
-//         celulaProduto.textContent = produto.produto;
-//         celulaDescricao.textContent = produto.description;
-//         celulaDataDeValidade.textContent = transformaDataString(produto.datadevalidade);
-//         celulaLocalizacao.textContent = produto.localizacao;
-//         celulaPreçoDeCompra.textContent = produto.price_buy;
-//         celulaPreçoDeVenda.textContent = produto.price_seller;
-//         celulaDataEntrada.textContent = transformaDataString(produto.date_created);
-//         celulaDataSaida.textContent = transformaDataString(produto.date_retired);
-//     })
-//}
-
-function adicionarProdutos() {
-    console.log(listaProdutos)
+function adicionarProdutos(listaProdutos) {
+    lista.innerHTML = ""
+    listaProdutos = listaProdutos
     listaProdutos.forEach((produto) => {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -252,13 +255,11 @@ function transformaDataString(date) {
     return stringDate
 }
 
+async function filtroDataValidade(listaProdutos) {
+    const produtosOrdenados = await listaProdutos.sort((a,b) => new Date(b.datadevalidade) - new Date(a.datadevalidade));
+    return produtosOrdenados;
+};
 
-/* <thead>
-<tr>
-  <th class="lista__container-titulo">Produto</th>
-  <th>Descrição</th>
-  <th>Quantidade</th>
-  <th>Preço</th>
-  <th>Localização</th>
-</tr>
-</thead> */
+async function filtraNome(listaProdutos, nome) {
+    return listaProdutos.filter((produto) => produto.description.toLowerCase().includes(nome.toLowerCase()));
+};
