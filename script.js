@@ -1,30 +1,34 @@
+const token = localStorage.getItem("authToken");
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("authToken")
     if(!token) {
         window.location.href = "login.html"
     }
-})
+});
+
+
 
 let listaProdutos = []
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:8000/istoky')
+    fetch("https://collab-sooty.vercel.app/istoky", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+        }
+    })
         .then(response => response.json())
         .then(async (data) => {
+            if(data.message == "Token inválido."){
+                localStorage.clear();
+                window.location.href = "login.html"
+            }
             listaProdutos = data.message
             adicionarProdutos(listaProdutos)
         })
         .catch(error => console.error('Erro:', error));
     });
 
-    
-    const listaProdutosQtd = document.addEventListener('DOMContentLoaded', () => {
-        fetch('http://localhost:8000/produtos/lista')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
-        .catch(error => console.error('Erro:', error));
-    });
     
 const lista = document.getElementById("lista");
 const btnFIltro = document.getElementById("btn-filtro");
@@ -209,10 +213,11 @@ async function abreForm(id) {
 
 async function editaProduto(id,dto) {
     try {
-        const reponse = await fetch(`http://localhost:8000/istoky/${id}`, {
+        const reponse = await fetch(`https://collab-sooty.vercel.app/istoky/${id}`, {
             method: "PUT",
             headers: {
-                'Content-Type' : 'application/json'
+                "Content-Type": "application/json",
+                "Authorization": token
             },
             body: JSON.stringify(dto)
         });
@@ -233,10 +238,11 @@ async function editaProduto(id,dto) {
 
 async function deleteProduto(id) {
     try {
-    const response = await fetch(`http://localhost:8000/istoky/${id}`, {
+    const response = await fetch(`https://collab-sooty.vercel.app/istoky/${id}`, {
         method: "DELETE",
         headers: {
-            'Content-Type' : 'application/json'
+            "Content-Type": "application/json",
+            "Authorization": token
         }
     });
     const data = await response.json();

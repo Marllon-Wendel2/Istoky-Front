@@ -1,4 +1,4 @@
-
+const token = localStorage.getItem("authToken");
 const loginForm = document.getElementById("login-form");
 
 loginForm.addEventListener("submit", async(event) => {
@@ -33,7 +33,7 @@ async function autenticaUsuario(email, password) {
         email, password
     }
     try {
-        const response = await fetch('http://localhost:8000/usuario/auth', {
+        const response = await fetch('https://collab-sooty.vercel.app/usuario/auth', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

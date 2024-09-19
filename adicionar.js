@@ -1,3 +1,4 @@
+const token = localStorage.getItem("authToken");
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("authToken")
     if(!token) {
@@ -48,10 +49,11 @@ btnAdicionar.addEventListener("submit",async (event) => {
 
 async function adicionarProduto(dto) {
     try {
-        const response = await fetch('http://localhost:8000/istoky', {
+        const response = await fetch("https://collab-sooty.vercel.app/istoky", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
+                "Authorization": token
             },
             body: JSON.stringify(dto)
         });
