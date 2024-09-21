@@ -1,16 +1,35 @@
+:root {
+  --cor-primaria: #A8DADC;
+  --cor-secundaria: #457B9D;
+  --neutro: #F1FAEE; 
+  --preto: #1D3557; 
+  --fonte-titulo: "Krona One", sans-serif;
+  --fonte-texto: 'Numans', sans-serif;
+  --degrade-azul: linear-gradient(180deg, #A8DADC 0%, #457B9D 100%);
+}
+
+
+.pag {
+  font-family: var(--fonte-texto);
+  background-color: #fff;
+  color: var(--preto);
+  margin: 0;
+  padding: 20px;
+}
+
 .form__container{
     display: flex;
     flex-direction: column;
     gap: 10px;
     max-width: 350px;
-    background-color: #fff;
+    background-image: var(--degrade-azul);
     padding: 20px;
     border-radius: 20px;
     position: relative;
 }
 h2{
     font-size: 28px;
-    color: royalblue;
+    color: var(--preto);
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -29,13 +48,13 @@ h2::before,.title::after {
     background-color: royalblue;
   }
   
- h2::before {
+h2::before {
     width: 18px;
     height: 18px;
     background-color: royalblue;
   }
   
- h2::after {
+h2::after {
     width: 18px;
     height: 18px;
     animation: pulse 1s linear infinite;
@@ -60,58 +79,57 @@ h2::before,.title::after {
 }
 
 .button {
-    line-height: 1;
-    text-decoration: none;
-    display: inline-flex;
-    border: none;
-    cursor: pointer;
-    align-items: center;
-    gap: 0.75rem;
-    background-color: var(--clr);
-    color: #fff;
-    border-radius: 10rem;
-    font-weight: 600;
-    padding: 0.75rem 1.5rem;
-    padding-left: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: background-color 0.3s;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--neutro);
+  color: var(--neutro);
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
   }
-  
+
   .button__icon-wrapper {
     flex-shrink: 0;
     width: 25px;
     height: 25px;
     position: relative;
-    color: var(--clr);
+    color: var(--preto);
     background-color: #fff;
     border-radius: 50%;
     display: grid;
     place-items: center;
     overflow: hidden;
   }
-  
+
   .button:hover {
-    background-color: #000;
+    background-color: var(--preto);
   }
-  
+
   .button:hover .button__icon-wrapper {
-    color: #000;
+    color: var(--preto);
   }
-  
+
   .button__icon-svg--copy {
     position: absolute;
     transform: translate(-150%, 150%);
   }
-  
+
   .button:hover .button__icon-svg:first-child {
     transition: transform 0.3s ease-in-out;
     transform: translate(150%, -150%);
   }
-  
+
   .button:hover .button__icon-svg--copy {
     transition: transform 0.3s ease-in-out 0.1s;
     transform: translate(0);
   }
-  

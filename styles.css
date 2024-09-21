@@ -52,7 +52,7 @@ tr:hover {
 .container__logo {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 2px;
     margin-bottom: 25px;
 }
 
@@ -101,7 +101,7 @@ tr:hover {
   }
   
   .button:hover {
-    background-color: #000;
+    background-color: var(--preto);
     color: #fff;
   }
   
@@ -169,6 +169,28 @@ tr:hover {
   border-color: #06f;
   color: #06f;
   fill: #06f;
+}
+
+.tema-containers {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin: 10px 10px;
+  width: 10px;
+}
+
+.opcoes-header {
+  font-family: var(--fonte-texto);
+  background: var(--neutro);
+  color: var(--preto);
+  border: 2px solid var(--cor-primaria);
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px;
+  appearance: none;
+  cursor: pointer;
+  min-width: 5em;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media (min-width: 768px) {
